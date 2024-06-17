@@ -7,21 +7,7 @@ const server = http.createServer(app);
 app.use(express.static('public'));
 const io = socketIO(server);
 
-io.on('connection', (socket) => {
-    console.log('A user connected');
-
-    // Handle socket.io events here
-    socket.on('newMessage', (data) => {
-        // Do something with the received message
-        console.log('Received message:', data);
-        io.emit('dispenseMessage', data);
-    });
-
-    socket.on('disconnect', () => {
-        // Handle user disconnection
-        console.log('A user disconnected');
-    });
-});
+// TODO add event listener for socket.io connections
 
 app.get('/', (req, res) => {
     // Send the HTML file as the response
