@@ -16,5 +16,12 @@ If you don't have it installed, or you have a version lower than 18, you can dow
 ## Getting started
 To get this project up and running, you'll need to install the dependancies
 ```
-    npm install
+npm install
 ```
+
+Once you've installed the dependancies, you can run the web app using the following command:
+```
+npm run start
+```
+
+You may be asked to install nodemon, by typing `y`, after which the server will start up. You can then navigate to `localhost:3000` to access the chat app.
