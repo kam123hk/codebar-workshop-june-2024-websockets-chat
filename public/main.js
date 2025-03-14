@@ -5,20 +5,38 @@ const socket = io();
 const messageInput = document.querySelector('#message-input');
 const button = document.querySelector('button');
 
+const nameInput = document.querySelector('#name-input');
+
 // Function to handle sending a message
 function sendMessage() {
     // Get the message text from the input
     const message = messageInput.value;
+    const name = nameInput.value;
 
     // TODO send message to server
+    socket.emit('new_message', { name, message })
+    console.log({name, message })
 
     // Clear the input field
     messageInput.value = '';
 }
 
-// TODO create function to add a new message to the chat
-
 // Add event listener to the button for sending a message
 button.addEventListener('click', sendMessage);
 
-// TODO add event listener for new messages
+// add event listener for new messages
+socket.on('dispense_message', data => {
+    console.log(data);
+
+    message = data.message;
+    name = data.name;
+    // alternatively, destructure: const {name,message} = data;
+
+    const messageElement = document.createElement('div');
+
+    messageElement.classList.add('message');
+    messageElement.textContent = name + ': ' + message;
+
+    const messageContainer = document.querySelector('.message-container')
+    messageContainer.appendChild(messageElement)
+})
