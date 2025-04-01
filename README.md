@@ -25,3 +25,5 @@ npm run start
 ```
 
 You may be asked to install nodemon, by typing `y`, after which the server will start up. You can then navigate to `localhost:3000` to access the chat app.
+
+For local, use src="http://localhost:3000/socket.io/socket.io.js" and npm run dev in the terminal.

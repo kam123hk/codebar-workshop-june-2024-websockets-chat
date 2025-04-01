@@ -3,7 +3,7 @@
 const express = require('express'); // webserver library Express, allows for hosting at specific paths / url
 const http = require('http'); // req-res protocol for client-server model, get reqs for example
 const socketIO = require('socket.io'); // websocket library Socket.IO
-// const path = require('path');
+const path = require('path'); // must have path or the app.get path throws referenceError
 
 // setup: creating Express app, creating server and applying the Express app to it
 const app = express();
@@ -23,12 +23,14 @@ io.on('connection', socket => {
     })
 })
 
-app.get('/g', (req, res) => {
-    console.log('this log does not work; in fact this get is not run, why??')
+app.get('/another', (req, res) => {
+    console.log('this log works now (before path, it did not run)')
     // Send the HTML file as the response (from the path, back to user)
-    res.sendFile(path.join(__dirname, 'public/in.html')); // in.html does not exist, was checking if get was working.
+    res.sendFile(path.join(__dirname, 'public/index.html')); // in.html does not exist, was checking if get was working.
 });
 
-server.listen(3000, () => {
-    console.log('Server is running on port 3000');
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
